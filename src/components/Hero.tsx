@@ -17,7 +17,7 @@ export function Hero({ sections = [], onSectionClick }: HeroProps): JSX.Element 
           <div className="container mx-auto px-2 sm:px-4 py-4">
             <div className="flex items-center justify-between">
               <div className="text-lg md:text-2xl font-black bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">
-                PRITTHWIRAJ CHARCHI
+                PRITHWIRAJ CHARCHI
               </div>
 
               {/* Hamburger Menu Button */}
@@ -105,7 +105,7 @@ export function Hero({ sections = [], onSectionClick }: HeroProps): JSX.Element 
 
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter">
                 <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent animate-gradient">
-                  PRITHIRAJ CHARCHI
+                  PRITHWIRAJ CHARCHI
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent animate-gradient">
