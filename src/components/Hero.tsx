@@ -1,5 +1,6 @@
 import { Zap, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import profileImage from '../assets/1760986081834.jpeg';
 
 interface HeroProps {
   sections?: Array<{ id: number; title: string }>;
@@ -84,7 +85,7 @@ export function Hero({ sections = [], onSectionClick }: HeroProps): JSX.Element 
               <div className="relative">
                 <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-orange-500 shadow-2xl transform group-hover:scale-105 transition-transform duration-500">
                   <img
-                    src="https://media.licdn.com/dms/image/v2/D5603AQFpq_sz6_IjVA/profile-displayphoto-crop_800_800/B56ZoC8yWFI8AI-/0/1760986081834?e=1762992000&v=beta&t=Vet_d-01a76t_bUNDITk8fNc0_6F_DxmQ_tDfpaSUBE"
+                    src={profileImage}
                     alt="Developer"
                     className="w-full h-full object-cover"
                   />
