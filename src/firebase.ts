@@ -11,8 +11,16 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// Check if all required config values are present
+const isFirebaseConfigured = Object.values(firebaseConfig).every(value => value);
+
+// Initialize Firebase only if configured
+let app;
+if (isFirebaseConfigured) {
+  app = initializeApp(firebaseConfig);
+} else {
+  console.warn('Firebase is not configured. Please set the VITE_FIREBASE_* environment variables.');
+}
 
 // Initialize Cloud Firestore and get a reference to the service
-export const db = getFirestore(app);
+export const db = isFirebaseConfigured ? getFirestore(app!) : null;

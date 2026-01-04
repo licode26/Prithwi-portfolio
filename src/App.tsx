@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, lazy, Suspense } from 'react';
+import { useState, useRef, lazy, Suspense } from 'react';
 import { Wheel } from './components/Wheel';
 import { Hero } from './components/Hero';
 import { ContentSection } from './components/ContentSection';
@@ -8,7 +8,7 @@ import { type Education } from './components/EducationDetails';
 import { type Project } from './components/ProjectDetails';
 import { type Achievement } from './components/AchievementDetails';
 import { type Experience } from './components/ExperienceDetails';
-import { Code, Trophy, Briefcase, GraduationCap, MessageSquare } from 'lucide-react';
+import { Code, Trophy, Briefcase, GraduationCap, MessageSquare, BookOpen } from 'lucide-react';
 
 // Lazy load components below the fold
 const EducationDetails = lazy(() => import('./components/EducationDetails').then(module => ({ default: module.EducationDetails })));
@@ -16,6 +16,7 @@ const ProjectDetails = lazy(() => import('./components/ProjectDetails').then(mod
 const AchievementDetails = lazy(() => import('./components/AchievementDetails').then(module => ({ default: module.AchievementDetails })));
 const ExperienceDetails = lazy(() => import('./components/ExperienceDetails').then(module => ({ default: module.ExperienceDetails })));
 const FeedbackSection = lazy(() => import('./components/FeedbackSection').then(module => ({ default: module.FeedbackSection })));
+const Blog = lazy(() => import('./components/Blog').then(module => ({ default: module.default })));
 const ScrollToTopButton = lazy(() => import('./components/ScrollToTopButton').then(module => ({ default: module.ScrollToTopButton })));
 const Footer = lazy(() => import('./components/Footer').then(module => ({ default: module.Footer })));
 
@@ -26,6 +27,7 @@ function App() {
   const achievementRef = useRef<HTMLDivElement>(null);
   const experienceRef = useRef<HTMLDivElement>(null);
   const feedbackRef = useRef<HTMLDivElement>(null);
+  const blogRef = useRef<HTMLDivElement>(null);
 
   const sections = [
     {
@@ -52,10 +54,10 @@ function App() {
       content: {
         heading: 'Built for Speed',
         items: [
-         'AI-Based Lung Cancer Detection - Python, TensorFlow, Flask',
-         'Smart Telemedicine Drone Network - IoT, Flask, Arduino',
-         'Carbon Footprint Analyzer for Indian Coal Mines - Python, Streamlit, ML',
-         'AI Fitness Trainer - MediaPipe, Flask, OpenCV'
+          'AI-Based Lung Cancer Detection - Python, TensorFlow, Flask',
+          'Smart Telemedicine Drone Network - IoT, Flask, Arduino',
+          'Carbon Footprint Analyzer for Indian Coal Mines - Python, Streamlit, ML',
+          'AI Fitness Trainer - MediaPipe, Flask, OpenCV'
 
         ]
       }
@@ -85,15 +87,25 @@ function App() {
         heading: 'In The Fast Lane',
         items: [
           'AI & ML Intern - Lung Cancer Detection Project (2024 - Present)',
-'IoT & Cloud Computing Intern - AICTE x Google Cloud (2023)',
-'Full Stack Developer - Smart India Hackathon (2023 - 2024)',
-'Research & Innovation Intern - Carbon Neutrality in Indian Coal Mines (2024)'
+ 'IoT & Cloud Computing Intern - AICTE x Google Cloud (2023)',
+ 'Full Stack Developer - Smart India Hackathon (2023 - 2024)',
+ 'Research & Innovation Intern - Carbon Neutrality in Indian Coal Mines (2024)'
 
         ]
       }
     },
     {
       id: 4,
+      title: 'BLOG',
+      icon: BookOpen,
+      color: '#8B5CF6', // Purple color for blog
+      content: {
+        heading: 'Latest Thoughts',
+        items: ['Read my latest blog posts and insights!']
+      }
+    },
+    {
+      id: 5,
       title: 'FEEDBACK',
       icon: MessageSquare,
       color: '#E91E63', // Pink color for feedback
@@ -203,6 +215,8 @@ function App() {
       achievementRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else if (section.title === 'EXPERIENCE' && experienceRef.current) {
       experienceRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (section.title === 'BLOG' && blogRef.current) {
+      blogRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else if (section.title === 'FEEDBACK' && feedbackRef.current) {
       feedbackRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -240,7 +254,7 @@ function App() {
           { name: 'SQL / Firebase / MongoDB', level: 80 },
           { name: 'HTML / CSS / Streamlit', level: 78 },
           { name: 'Google Cloud / AI Services', level: 75 },
-          { name: 'React.js / HTML,CSS<', level: 70 },
+          { name: 'React.js / HTML, CSS', level: 70 },
         ]}
       />
 
@@ -269,6 +283,11 @@ function App() {
 
         <div ref={experienceRef}>
           <ExperienceDetails experiences={experiences} />
+        </div>
+
+        {/* Blog Section */}
+        <div ref={blogRef}>
+          <Blog />
         </div>
 
         {/* Feedback Section */}

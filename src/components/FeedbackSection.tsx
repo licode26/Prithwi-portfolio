@@ -20,6 +20,8 @@ export const FeedbackSection: React.FC = () => {
 
   // Listen for real-time updates from Firestore
   useEffect(() => {
+    if (!db) return;
+
     const q = query(collection(db, 'feedback'), orderBy('createdAt', 'desc'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const feedbacks: Feedback[] = [];
@@ -34,6 +36,10 @@ export const FeedbackSection: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!db) {
+      alert('Feedback system is not available at the moment.');
+      return;
+    }
     if (!name.trim() || !message.trim() || rating === 0) {
       alert('Please fill out all fields and provide a rating.');
       return;
