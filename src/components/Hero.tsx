@@ -9,7 +9,83 @@ interface HeroProps {
 
 export function Hero({ sections = [], onSectionClick }: HeroProps): JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [phase, setPhase] = useState<'initial' | 'animating' | 'done'>('initial');
 
+  const handleClick = () => {
+    setPhase('animating');
+    setTimeout(() => setPhase('done'), 1500);
+  };
+
+  const ProfileImage = () => (
+    <div className="relative group">
+      <div className="absolute -inset-4 bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 rounded-full opacity-30 blur-2xl group-hover:opacity-50 transition-opacity duration-500"></div>
+      <div className="relative">
+        <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-orange-500 shadow-2xl transform group-hover:scale-105 transition-transform duration-500">
+          <img
+            src={profileImage}
+            alt="Developer"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="absolute -bottom-2 -right-2 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full flex items-center justify-center animate-pulse shadow-xl">
+          <Zap className="text-white h-7 w-7 sm:h-9 sm:w-9" />
+        </div>
+      </div>
+    </div>
+  );
+
+  if (phase === 'initial') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center relative overflow-hidden">
+        {/* Glowing Background Effects */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-3xl animate-pulse"></div>
+          <div
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-3xl animate-pulse"
+            style={{ animationDelay: '1s' }}
+          ></div>
+        </div>
+        <div className="relative z-10 cursor-pointer" onClick={handleClick}>
+          <ProfileImage />
+          <div className="text-center mt-8">
+            <p className="hollow-text">WOULD YOU WANT TO SEE BLAST</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (phase === 'animating') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+        {/* Glowing Background Effects */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-3xl animate-pulse"></div>
+          <div
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-3xl animate-pulse"
+            style={{ animationDelay: '1s' }}
+          ></div>
+        </div>
+        {/* Dropping circle */}
+        <div className="absolute top-1/2 left-1/2 z-10 animate-drop-bomb">
+          <ProfileImage />
+        </div>
+        {/* Explosion at bottom */}
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-5 animate-explosion">
+          <div className="w-64 h-64 bg-orange-500 rounded-full blur-3xl opacity-50"></div>
+          <div className="absolute inset-0 w-64 h-64 bg-cyan-500 rounded-full blur-3xl animate-pulse"></div>
+        </div>
+        {/* Screen blast effect */}
+        <div className="absolute inset-0 z-15 animate-bomb-blast"></div>
+        {/* Blast text */}
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <p className="text-6xl font-black text-white animate-pulse">LETS START</p>
+        </div>
+      </div>
+    );
+  }
+
+  // phase === 'done'
   return (
     <div className="relative overflow-hidden">
       {/* Navigation Header */}
@@ -80,21 +156,7 @@ export function Hero({ sections = [], onSectionClick }: HeroProps): JSX.Element 
         <div className="container mx-auto px-4 relative z-10 h-full flex flex-col justify-center">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
             {/* Profile Image */}
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 rounded-full opacity-30 blur-2xl group-hover:opacity-50 transition-opacity duration-500"></div>
-              <div className="relative">
-                <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-orange-500 shadow-2xl transform group-hover:scale-105 transition-transform duration-500">
-                  <img
-                    src={profileImage}
-                    alt="Developer"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute -bottom-2 -right-2 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full flex items-center justify-center animate-pulse shadow-xl">
-                  <Zap className="text-white h-7 w-7 sm:h-9 sm:w-9" />
-                </div>
-              </div>
-            </div>
+            <ProfileImage />
 
             {/* Text Content */}
             <div className="text-center lg:text-left space-y-4">
