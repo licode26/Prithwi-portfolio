@@ -39,9 +39,9 @@ export function Hero({ sections = [], onSectionClick }: HeroProps): JSX.Element 
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center relative overflow-hidden">
         {/* Glowing Background Effects */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-2xl animate-pulse"></div>
           <div
-            className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-3xl animate-pulse"
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-2xl animate-pulse"
             style={{ animationDelay: '1s' }}
           ></div>
         </div>
@@ -60,9 +60,9 @@ export function Hero({ sections = [], onSectionClick }: HeroProps): JSX.Element 
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
         {/* Glowing Background Effects */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-2xl animate-pulse"></div>
           <div
-            className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-3xl animate-pulse"
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-2xl animate-pulse"
             style={{ animationDelay: '1s' }}
           ></div>
         </div>
@@ -72,8 +72,8 @@ export function Hero({ sections = [], onSectionClick }: HeroProps): JSX.Element 
         </div>
         {/* Explosion at bottom */}
         <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-5 animate-explosion">
-          <div className="w-64 h-64 bg-orange-500 rounded-full blur-3xl opacity-50"></div>
-          <div className="absolute inset-0 w-64 h-64 bg-cyan-500 rounded-full blur-3xl animate-pulse"></div>
+          <div className="w-64 h-64 bg-orange-500 rounded-full blur-2xl opacity-50"></div>
+          <div className="absolute inset-0 w-64 h-64 bg-cyan-500 rounded-full blur-2xl animate-pulse"></div>
         </div>
         {/* Screen blast effect */}
         <div className="absolute inset-0 z-15 animate-bomb-blast"></div>
@@ -145,9 +145,9 @@ export function Hero({ sections = [], onSectionClick }: HeroProps): JSX.Element 
       <div className="relative overflow-hidden pt-24 md:pt-32 pb-10">
         {/* Glowing Background Effects */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-2xl animate-pulse"></div>
           <div
-            className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-3xl animate-pulse"
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-2xl animate-pulse"
             style={{ animationDelay: '1s' }}
           ></div>
         </div>

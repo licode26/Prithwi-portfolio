@@ -1,17 +1,23 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, lazy, Suspense } from 'react';
 import { Wheel } from './components/Wheel';
 import { Hero } from './components/Hero';
 import { ContentSection } from './components/ContentSection';
 import { SkillBars } from './components/SkillBars';
 import { PersonalData } from './components/PersonalData';
-import { EducationDetails, type Education } from './components/EducationDetails';
-import { ProjectDetails, type Project } from './components/ProjectDetails';
-import { AchievementDetails, type Achievement } from './components/AchievementDetails';
-import { ExperienceDetails, type Experience } from './components/ExperienceDetails';
-import { FeedbackSection } from './components/FeedbackSection';
-import { ScrollToTopButton } from './components/ScrollToTopButton'; 
-import { Footer } from './components/Footer'; // Import th// Import the new component
+import { type Education } from './components/EducationDetails';
+import { type Project } from './components/ProjectDetails';
+import { type Achievement } from './components/AchievementDetails';
+import { type Experience } from './components/ExperienceDetails';
 import { Code, Trophy, Briefcase, GraduationCap, MessageSquare } from 'lucide-react';
+
+// Lazy load components below the fold
+const EducationDetails = lazy(() => import('./components/EducationDetails').then(module => ({ default: module.EducationDetails })));
+const ProjectDetails = lazy(() => import('./components/ProjectDetails').then(module => ({ default: module.ProjectDetails })));
+const AchievementDetails = lazy(() => import('./components/AchievementDetails').then(module => ({ default: module.AchievementDetails })));
+const ExperienceDetails = lazy(() => import('./components/ExperienceDetails').then(module => ({ default: module.ExperienceDetails })));
+const FeedbackSection = lazy(() => import('./components/FeedbackSection').then(module => ({ default: module.FeedbackSection })));
+const ScrollToTopButton = lazy(() => import('./components/ScrollToTopButton').then(module => ({ default: module.ScrollToTopButton })));
+const Footer = lazy(() => import('./components/Footer').then(module => ({ default: module.Footer })));
 
 function App() {
   const [activeSection, setActiveSection] = useState(0);
@@ -248,30 +254,32 @@ function App() {
         university="GIET UNIVERSITY, GUNUPUR"
       />
 
-      <div ref={educationRef}>
-        <EducationDetails educations={educations} />
-      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <div ref={educationRef}>
+          <EducationDetails educations={educations} />
+        </div>
 
-      <div ref={projectRef}>
-        <ProjectDetails projects={projects} />
-      </div>
+        <div ref={projectRef}>
+          <ProjectDetails projects={projects} />
+        </div>
 
-      <div ref={achievementRef}>
-        <AchievementDetails achievements={achievements} />
-      </div>
+        <div ref={achievementRef}>
+          <AchievementDetails achievements={achievements} />
+        </div>
 
-      <div ref={experienceRef}>
-        <ExperienceDetails experiences={experiences} />
-      </div>
+        <div ref={experienceRef}>
+          <ExperienceDetails experiences={experiences} />
+        </div>
 
-      {/* Feedback Section */}
-      <div ref={feedbackRef}>
-        <FeedbackSection />
-      </div>
-       
-       <Footer />
-      {/* Add the scroll to top button here */}
-      <ScrollToTopButton />
+        {/* Feedback Section */}
+        <div ref={feedbackRef}>
+          <FeedbackSection />
+        </div>
+
+        <Footer />
+        {/* Add the scroll to top button here */}
+        <ScrollToTopButton />
+      </Suspense>
 
       <div className="fixed bottom-0 left-0 w-full h-2 bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 animate-pulse"></div>
       <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-30"></div>
